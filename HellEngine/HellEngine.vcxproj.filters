@@ -31,6 +31,9 @@
     <Filter Include="src\HellEngine\Logic">
       <UniqueIdentifier>{546986B7-40F8-0F81-E916-247CD5842027}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\HellEngine\Physics">
+      <UniqueIdentifier>{8940A6D7-753A-CF29-5EA7-653A4A403596}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\HellEngine\Renderer">
       <UniqueIdentifier>{9D2349A3-095B-913A-1265-F55D7E1BB833}</UniqueIdentifier>
     </Filter>
@@ -171,6 +174,9 @@
     <ClInclude Include="src\HellEngine\GameObjects\Shell.h">
       <Filter>src\HellEngine\GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="src\HellEngine\GameObjects\StaticEntity.h">
+      <Filter>src\HellEngine\GameObjects</Filter>
+    </ClInclude>
     <ClInclude Include="src\HellEngine\ImGUI\ImGuiLayer.h">
       <Filter>src\HellEngine\ImGUI</Filter>
     </ClInclude>
@@ -212,6 +218,9 @@
     </ClInclude>
     <ClInclude Include="src\HellEngine\MouseButtonCodes.h">
       <Filter>src\HellEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HellEngine\Physics\PhysicsObject.h">
+      <Filter>src\HellEngine\Physics</Filter>
     </ClInclude>
     <ClInclude Include="src\HellEngine\Player.h">
       <Filter>src\HellEngine</Filter>
@@ -1428,8 +1437,6 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\HellEngine\Physics\PhysicsObject.h" />
-    <ClInclude Include="src\HellEngine\GameObjects\StaticEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\HellEngine\Animation\SkinnedMesh.cpp">
@@ -1474,6 +1481,9 @@
     <ClCompile Include="src\HellEngine\GameObjects\Shell.cpp">
       <Filter>src\HellEngine\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="src\HellEngine\GameObjects\StaticEntity.cpp">
+      <Filter>src\HellEngine\GameObjects</Filter>
+    </ClCompile>
     <ClCompile Include="src\HellEngine\ImGUI\ImGuiBuild.cpp">
       <Filter>src\HellEngine\ImGUI</Filter>
     </ClCompile>
@@ -1506,6 +1516,9 @@
     </ClCompile>
     <ClCompile Include="src\HellEngine\ModelLoader.cpp">
       <Filter>src\HellEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HellEngine\Physics\PhysicsObject.cpp">
+      <Filter>src\HellEngine\Physics</Filter>
     </ClCompile>
     <ClCompile Include="src\HellEngine\Player.cpp">
       <Filter>src\HellEngine</Filter>
@@ -1591,7 +1604,5 @@
     <ClCompile Include="vendor\fmod\include\common_platform.cpp">
       <Filter>vendor\fmod\include</Filter>
     </ClCompile>
-    <ClCompile Include="src\HellEngine\Physics\PhysicsObject.cpp" />
-    <ClCompile Include="src\HellEngine\GameObjects\StaticEntity.cpp" />
   </ItemGroup>
 </Project>

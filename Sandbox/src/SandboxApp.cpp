@@ -10,6 +10,14 @@
 #include "HellEngine/GameObjects/Shell.h"
 #include "HellEngine/Core.h"
 
+extern "C" {
+	__declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
+}
+
+extern "C" {
+	__declspec(dllexport) int AmdPowerXpressRequestHighPerformance = 1;
+}
+
 namespace HellEngine
 {
 	//bool Config::DOF_showFocus;
@@ -374,17 +382,19 @@ namespace HellEngine
 			lastFrame = currentFrame;
 			camera.Update(deltaTime);
 			skinnedMesh.Update(deltaTime, &camera);
-					   			
+
 			Quad2D::UpdateBlitter(deltaTime);
 			Audio::MainUpdate();
-			
+
 			physics.Update(deltaTime);
 
 			time += deltaTime;
 			WORLD_TIME += deltaTime;
 
-			if (player.walking)
-				skinnedMesh.headBobCounter += deltaTime * skinnedMesh.headBobSpeed;
+				
+			
+				
+				
 
 			// GAME OBJECTS
 			for (Shell& shell : shells)
@@ -407,12 +417,20 @@ namespace HellEngine
 			if (time > skinnedMesh.totalAnimationTime)
 				shotgunFiring = false;
 
-			
+
 			player.Update(&camera, deltaTime, boundingBoxPtrs, boundingPlanePtrs);
 
-
-			RenderableObject::SetPositionByName("Sphere", player.position);
-			camera.CalculateviewPosition(player.GetViewPosition());
+				RenderableObject::SetPositionByName("Sphere", player.position);
+			if (!player.walking)
+			{
+				camera.CalculateviewPosition(player.GetViewPosition());
+			}
+			
+			else if (player.walking)
+			{
+				skinnedMesh.headBobCounter += deltaTime * skinnedMesh.headBobSpeed;
+				camera.CalculateviewPosition(player.GetViewPosition() + (camera.SmoothHeadBob()));
+			}
 			camera.CalculateMatrices();
 
 			// DOORS
@@ -476,7 +494,7 @@ namespace HellEngine
 
 			glBindFramebuffer(GL_FRAMEBUFFER, lightingBuffer.ID);
 			glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 			for (int i = 0; i < Light::lights.size(); i++) {
 				StencilPass(nullTechniqueShader, i);

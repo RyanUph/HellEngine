@@ -3,6 +3,8 @@
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/noise.hpp>
+#include <glm/gtc/random.hpp>
 
 #include <vector>
 
@@ -63,7 +65,7 @@ namespace HellEngine {
 
 		float headBobCounter = 0.0f;
 		float headBobSpeed = 7.5f;//0.100f;
-		float headBobFactor = 0.01f;// 0.005f;
+		float headBobFactor = 0.02f;// 0.005f;
 
 		float rotationSpeed = 90.0f;
 
@@ -76,7 +78,17 @@ namespace HellEngine {
 
 		float CalculateHeadBob()
 		{
-			return (float)sin(headBobCounter) * headBobFactor;
+			return (float)(sin(headBobCounter) * headBobFactor);
+		}
+
+		float SimplexHeadBob()
+		{
+			return (float)glm::simplex(glm::vec3(glm::gaussRand(0.051f, 0.85f), glm::gaussRand(0.073f, 0.99f), glm::gaussRand(0.051f, 0.63f)));
+		}
+
+		float SmoothHeadBob()
+		{
+			return (float)(cos(headBobCounter) * headBobFactor);
 		}
 
 		void CalculateviewPosition(glm::vec3 playerViewHeight)
